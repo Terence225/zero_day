@@ -14,4 +14,7 @@ I hope that clarifies a bit about me.
 
 For my information you can find me on:
 ntumbulukotchauke@gmail.com
+
+Or
+
 071 249 0763
