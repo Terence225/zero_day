@@ -1,3 +1,17 @@
-This is a practice quiz project
+Hi i'm Ntumbuluko Terence Chauke
 
-It is yet to grow in in quiz questionnaires, but please feel free to check it out before it grows too much and overwhelms you
+Aspiring Software Developer
+
+24 Years of age
+
+Learning and uploading my projects here in hopes of collaborating with other people & or company to build and maintain a software
+
+This is my Zero_day repository.
+
+The name Zero_day is a motivational reminder that i do not have to wait for another day to get started on my project of interest.
+
+I hope that clarifies a bit about me.
+
+For my information you can find me on:
+ntumbulukotchauke@gmail.com
+071 249 0763
