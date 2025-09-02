@@ -1,0 +1,43 @@
+.gallery img {
+    width: 100%;
+}
+h2 {
+    font-family: fantasy;
+    text-align: center;
+    font-size: 30px;
+    color: aqua;
+    font-style: italic;
+}
+
+h4 {
+    font-family: fantasy;
+    font-size: 30px;
+    font-style: italic;
+    color: aqua;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#Menu{
+    width: 100%;
+    height: 40px;
+    background-color: aqua;
+    padding-top: 12px;
+}
+
+#Menu a{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 800;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#Menu a:hover{
+    color: black;
+}
