@@ -4,7 +4,7 @@ Aspiring Software Developer
 
 24 Years of age
 
-Learning and uploading my projects here in hopes of collaborating with other people & or company to build and maintain a software
+Learning and uploading my projects here in hopes of collaborating with other individulas & or company to build and maintain a software
 
 This is my Zero_day repository.
 
