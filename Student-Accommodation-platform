@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+import { Switch, Route } from "wouter";
+import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import HomePage from "@/pages/HomePage";
+import PricingPage from "@/pages/PricingPage";
+import NotFound from "@/pages/not-found";
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={HomePage} />
+      <Route path="/pricing" component={PricingPage} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Router />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
+
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import HowItWorks from "@/components/HowItWorks";
+import PropertyGrid from "@/components/PropertyGrid";
+import LandlordCTA from "@/components/LandlordCTA";
+import Testimonials from "@/components/Testimonials";
+import Footer from "@/components/Footer";
+import singleRoomImage from "@assets/generated_images/Single_room_property_listing_f2ef9d31.png";
+import apartmentImage from "@assets/generated_images/Apartment_living_area_listing_e7aa459e.png";
+import sharedRoomImage from "@assets/generated_images/Shared_room_listing_image_6bf965dd.png";
+
+//todo: remove mock functionality - these are mock properties for design prototype
+const featuredProperties = [
+  {
+    id: "1",
+    title: "Modern Single Room near Wits",
+    price: 3500,
+    location: "Braamfontein",
+    university: "Wits University",
+    distance: "1.2km",
+    image: singleRoomImage,
+    amenities: ["wifi", "furnished", "security", "electricity"],
+    nsfasApproved: true,
+    featured: true,
+  },
+  {
+    id: "2",
+    title: "Spacious 2-Bed Apartment",
+    price: 6500,
+    location: "Rondebosch",
+    university: "UCT",
+    distance: "800m",
+    image: apartmentImage,
+    amenities: ["wifi", "furnished", "security"],
+    nsfasApproved: false,
+    featured: true,
+  },
+  {
+    id: "3",
+    title: "Affordable Shared Room",
+    price: 2200,
+    location: "Hatfield",
+    university: "University of Pretoria",
+    distance: "1.5km",
+    image: sharedRoomImage,
+    amenities: ["wifi", "furnished"],
+    nsfasApproved: true,
+    featured: false,
+  },
+  {
+    id: "4",
+    title: "Cozy Studio Apartment",
+    price: 4200,
+    location: "Stellenbosch Central",
+    university: "Stellenbosch University",
+    distance: "500m",
+    image: singleRoomImage,
+    amenities: ["wifi", "furnished", "security", "electricity"],
+    nsfasApproved: true,
+    featured: true,
+  },
+];
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <HeroSection />
+        <HowItWorks />
+        
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="font-accent font-bold text-3xl md:text-4xl mb-4">
+                Featured Properties
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Handpicked accommodation options for students
+              </p>
+            </div>
+            <PropertyGrid properties={featuredProperties} />
+          </div>
+        </section>
+
+        <LandlordCTA />
+        <Testimonials />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import PricingCard from "@/components/PricingCard";
+
+const pricingPlans = [
+  {
+    title: "Student Basic",
+    price: 0,
+    period: "forever",
+    description: "Get started with essential features",
+    features: [
+      "Browse all listings",
+      "Save up to 5 properties",
+      "Basic search filters",
+      "Contact landlords",
+      "View property details",
+    ],
+    popular: false,
+    ctaText: "Sign Up Free",
+  },
+  {
+    title: "Student Premium",
+    price: 19.99,
+    period: "month",
+    description: "Perfect for students seeking the best accommodation",
+    features: [
+      "Everything in Basic",
+      "Save unlimited properties",
+      "Advanced search filters",
+      "Priority support",
+      "No advertisements",
+      "Early access to new listings",
+      "Application tracking",
+    ],
+    popular: true,
+    ctaText: "Start Premium",
+  },
+  {
+    title: "Landlord Premium",
+    price: 49.99,
+    period: "month",
+    description: "For property owners and managers",
+    features: [
+      "Unlimited property listings",
+      "Featured in search results",
+      "Priority placement",
+      "Detailed analytics",
+      "Applicant management",
+      "Direct messaging",
+      "Premium support",
+      "Verified landlord badge",
+    ],
+    popular: false,
+    ctaText: "List Properties",
+  },
+];
+
+export default function PricingPage() {
+  const handleSelectPlan = (planTitle: string) => {
+    console.log(`Selected plan: ${planTitle}`);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <section className="py-20 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h1 className="font-accent font-bold text-4xl md:text-5xl mb-4">
+                Simple, Transparent Pricing
+              </h1>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Choose the plan that works best for you. No hidden fees, cancel anytime.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {pricingPlans.map((plan, index) => (
+                <PricingCard
+                  key={index}
+                  {...plan}
+                  onSelect={() => handleSelectPlan(plan.title)}
+                />
+              ))}
+            </div>
+
+            <div className="mt-16 text-center">
+              <h3 className="font-semibold text-xl mb-4">All plans include:</h3>
+              <div className="flex flex-wrap justify-center gap-4 text-muted-foreground">
+                <span>✓ Verified listings</span>
+                <span>✓ Secure messaging</span>
+                <span>✓ Mobile access</span>
+                <span>✓ NSFAS filtering</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+import { sql } from "drizzle-orm";
+import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
+
+export const users = pgTable("users", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull(),
+});
+
+export const insertUserSchema = createInsertSchema(users).pick({
+  username: true,
+  password: true,
+});
+
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type User = typeof users.$inferSelect;
+
+import { type User, type InsertUser } from "@shared/schema";
+import { randomUUID } from "crypto";
+
+export interface IStorage {
+  getUser(id: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+}
+
+export class MemStorage implements IStorage {
+  private users: Map<string, User>;
+
+  constructor() {
+    this.users = new Map();
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username,
+    );
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const id = randomUUID();
+    const user: User = { ...insertUser, id };
+    this.users.set(id, user);
+    return user;
+  }
+}
+
+export const storage = new MemStorage();
+
+import type { Express } from "express";
+import { createServer, type Server } from "http";
+import { storage } from "./storage";
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  // API routes will go here
+  // e.g., app.post('/api/properties', ...)
+  
+  const httpServer = createServer(app);
+  return httpServer;
+}
